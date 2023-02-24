@@ -4,26 +4,25 @@ header {
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 header .logo {
     background: url("../images/logo.png") no-repeat;
-    width: 20%;
-    margin-left: 20px;
-    margin-top: 1%;
+    left: 20px;
     height: 100%;
-    align-content: center;
+    width:300px;
 }
 
-#api_status {
-    margin-right: 30px;
-    border-radius: 30px;
-    width: 40px;
+
+#api_status{
+    background-color: #ccc;
     height: 40px;
-    background-color: #CCCCCC;
+    width: 40px;
+    margin-right: 30px;
+    border-radius: 50px;
 }
 
-#api_status.available {
-    background-color: #FF545F;
+.available{
+    background-color:#ff545f !important;
 }

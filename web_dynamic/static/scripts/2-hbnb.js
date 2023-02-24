@@ -1,23 +1,30 @@
 $(document).ready(function () {
-  const listCheck = {};
-  $('li input[type="checkbox"]').change(function () {
-    if ($(this).is(':checked')) {
-      listCheck[$(this).data('id')] = $(this).data('name');
+  $('input[type=checkbox]').click(function () {
+    const myListName = [];
+    const myId = [];
+    $('input[type=checkbox]:checked').each(function () {
+      myListName.push($(this).attr('data-name'));
+      myId.push($(this).attr('data-id'));
+    });
+    if (myListName.length === 0) {
+      $('.amenities h4').html('&nbsp;');
     } else {
-      delete listCheck[$(this).data('id')];
+      $('.amenities h4').text(myListName.join(', '));
     }
-    const values = Object.values(listCheck);
-    const list = values.join(', ');
-    const short = list.slice(0, 30);
-    $('.amenities h4').text(short + '...');
-    if (values.length === 0) $('.amenities h4').html('&nbsp;');
+    console.log(myId);
   });
-  const url = 'http://127.0.0.1:5001/api/v1/status/';
-  $.get(url, function (info) {
-    if (info.status === 'OK') {
-      $('#api_status').addClass('available');
-    } else {
-      $('#api_status').removeClass('available');
-    }
-  });
+});
+
+$.ajax({
+  url: 'http://0.0.0.0:5001/api/v1/status/',
+  type: 'GET',
+  dataType: 'json',
+  success: function (json) {
+    $('#api_status').addClass('available');
+  },
+
+  error: function (xhr, status) {
+    console.log('error ' + status);
+  }
+
 });

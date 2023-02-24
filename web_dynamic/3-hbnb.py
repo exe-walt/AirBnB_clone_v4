@@ -8,6 +8,7 @@ from models.place import Place
 from os import environ
 from flask import Flask, render_template
 import uuid
+
 app = Flask(__name__)
 # app.jinja_env.trim_blocks = True
 # app.jinja_env.lstrip_blocks = True
@@ -34,7 +35,8 @@ def hbnb():
 
     places = storage.all(Place).values()
     places = sorted(places, key=lambda k: k.name)
-    cache_id = str(uuid.uuid4())
+    cache_id = uuid.uuid4()
+
     return render_template('3-hbnb.html',
                            states=st_ct,
                            amenities=amenities,
@@ -44,4 +46,4 @@ def hbnb():
 
 if __name__ == "__main__":
     """ Main Function """
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
